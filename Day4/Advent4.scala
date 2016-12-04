@@ -1,14 +1,14 @@
 
 import scala.io.Source
 
-//val textLoc = "/Users/markostamenovic/Downloads/input_day4.txt"
+// val textLoc = "/Users/markostamenovic/code/adventOfCode/Day4/input_day4.txt"
 
 object Advent4 {
 
   def getRooms (textLoc : String) = {
     Source.fromFile(textLoc).getLines.toArray.
-    map(_.replace("-","")).map(_.filter(!_.isDigit)).
-    map(_.dropRight(1).split("\\["))
+    map(_.replace("-","")).map(_.dropRight(1).split("\\[")).
+    map(x => Array(x(0).filter(!_.isDigit),x(1),x(0).filter(_.isDigit)))
   }
 
   def countWords (hash : String) = {
@@ -27,8 +27,8 @@ object Advent4 {
 
   def main(args:Array[String]):Unit = {
     val rooms = getRooms(args(0))
-    val pairs = rooms.map(x => (x(1),top5Words(countWords(x(0))))).
-                map(x => bool2int(x._1 == x._2)).reduce(_+_)
-    println(pairs)
+    val pairs = rooms.map(x => (x(1),top5Words(countWords(x(0))),x(2).toInt)).
+                map(x => if (x._1 == x._2) x._3 else 0).reduce(_+_)
+    println("First part: " + pairs)
   }
 }

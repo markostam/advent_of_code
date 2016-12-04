@@ -29,7 +29,7 @@ object Advent4 {
   }
 
   def main(args:Array[String]):Unit = {
-    val rooms = getRooms(args(0)).map(x => Array(x(0).replace("-",""),x(1)))
+    val rooms = getRooms(args(0)).map(x => Array(x(0).replace("-",""),x(1),x(2)))
     val pairs = rooms.map(x => (x(1),top5Words(countWords(x(0))),x(2).toInt)).
                 map(x => if (x._1 == x._2) x._3 else 0).reduce(_+_)
     println("First part: " + pairs)

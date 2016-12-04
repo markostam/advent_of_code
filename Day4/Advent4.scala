@@ -14,7 +14,7 @@ object Advent4 {
   }
 
   def top5Words (countMap: Map[Char,Int]) = {
-    //get top 5 words sorted by order
+    // get top 5 words sorted by order and if collisions sorted alphabetically
     countMap.toArray.sortBy(_._2).reverse.
     groupBy(_._2).toArray.sortBy(_._1).reverse.
     map(x => x._2.sortBy(_._1)).flatten.
@@ -29,11 +29,12 @@ object Advent4 {
   }
 
   def main(args:Array[String]):Unit = {
+    // first part
     val rooms = getRooms(args(0)).map(x => Array(x(0).replace("-",""),x(1),x(2)))
     val pairs = rooms.map(x => (x(1),top5Words(countWords(x(0))),x(2).toInt)).
                 map(x => if (x._1 == x._2) x._3 else 0).reduce(_+_)
     println("First part: " + pairs)
-
+    // 2nd part
     val codes = getRooms(args(0)).map(x => (x(0).split("-"),x(2)))
     val decoded = codes.map(x => ((x._1.map(y => y.
                   map(z => decodeChar(z,x._2.toInt)))).reduce(_+" "+_), x._2)).toMap

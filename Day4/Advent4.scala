@@ -1,13 +1,11 @@
 
 import scala.io.Source
 
-// val textLoc = "/Users/markostamenovic/code/adventOfCode/Day4/input_day4.txt"
-
 object Advent4 {
 
   def getRooms (textLoc : String) = {
     Source.fromFile(textLoc).getLines.toArray.
-    map(_.replace("-","")).map(_.dropRight(1).split("\\[")).
+    map(_.dropRight(1).split("\\[")).
     map(x => Array(x(0).filter(!_.isDigit),x(1),x(0).filter(_.isDigit)))
   }
 
@@ -23,12 +21,23 @@ object Advent4 {
     map(_._1.toString).take(5).reduce(_+_)
   }
 
-  implicit def bool2int(b:Boolean) = if (b) 1 else 0
+  def decodeChar (letter:Char, shift:Int) : Char = {
+    val alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray()
+    val start_index = alphabet.indexOf(letter)
+    val out_index = (shift % 26 + start_index) % 26
+    alphabet(out_index)
+  }
 
   def main(args:Array[String]):Unit = {
-    val rooms = getRooms(args(0))
+    val rooms = getRooms(args(0)).map(x => Array(x(0).replace("-",""),x(1)))
     val pairs = rooms.map(x => (x(1),top5Words(countWords(x(0))),x(2).toInt)).
                 map(x => if (x._1 == x._2) x._3 else 0).reduce(_+_)
     println("First part: " + pairs)
+
+    val codes = getRooms(args(0)).map(x => (x(0).split("-"),x(2)))
+    val decoded = codes.map(x => ((x._1.map(y => y.
+                  map(z => decodeChar(z,x._2.toInt)))).reduce(_+" "+_), x._2)).toMap
+    val queryRoom = "northpole object storage"
+    println("Second part: " + decoded(queryRoom))
   }
 }

@@ -15,19 +15,65 @@ object Advent5 {
     Integer.parseInt(hex, 16)
   }
 
-  def bruteForceCrack (doorID: String) = {
-    lazy val passwordCrack = (1 to 100000000).toStream.map(doorID + _).map(x => hash(x)).
-      filter(x => (x(0)=="0" & x(1)=="0" & hex2int(x(2)) < 16)).map(_(2))
-    password (0 to 7).map(x => passwordCrack(x))
+  def bruteForceCrack1 (doorID: String) = {
+    // lazily evaluate a brute force attack
+    lazy val passwordCrack = Stream.from(0).
+      map(doorID + _).
+      map(x => hash(x)).
+      filter(x => (x(0)=="0" & x(1)=="0" & hex2int(x(2)) < 16)).
+      map(_(2))
+    (0 to 7).map(x => passwordCrack(x)).mkString("")
   }
+
+  def bruteForceCrack2 (doorID: String) = {
+    // lazily evaluate a brute force attack
+    lazy val passwordCrack = Stream.from(0).
+      map(doorID + _).
+      map(x => hash(x)).
+      filter(x => (x(0)=="0" & x(1)=="0" & hex2int(x(2)) < 8)).
+      map(x => (x(2),x(3)(0)))
+    (0 to 7).map(x => passwordCrack(x)).mkString("")
+  }
+
+  def unique_new (thing : Array[(Any, Any)]) = {
+    var seen = Set[Any]()
+    def test_unique (tup : (Any,Any)) : Boolean = {
+      if (!seen.contains(tup._1)) {
+        seen += tup._1
+        true
+      }
+      else {false}
+    }
+    thing.filter(x => test_unique(x))
+  }
+
+
+  def bruteForceCrack3 (doorID: String) = {
+    var seen = Set[Any]()
+    def test_unique (tup : (Any,Any)) : Boolean = {
+      if (!seen.contains(tup._1)) {
+        seen += tup._1
+        true
+      }
+      else {false}
+    }
+    // lazily evaluate a brute force attack
+    lazy val passwordCheck = Stream.from(0).
+      map(doorID + _).
+      map(x => hash(x)).
+      filter(x => (x(0)=="0" & x(1)=="0" & hex2int(x(2)) < 8)).
+      map(x => (x(2),x(3))).filter(x => test_unique(x))
+    //lazy val passwordCrack = unique_new(passwordCheck)
+    (0 to 7).map(x => passwordCheck(x))//.mkString("")
+  }
+
+
 
   def main(args:Array[String]):Unit = {
     // first part
     val doorID = args(0)
-    val rooms = getRooms(args(0)).map(x => Array(x(0).replace("-",""),x(1),x(2)))
-    val pairs = rooms.map(x => (x(1),top5Words(countWords(x(0))),x(2).toInt)).
-                map(x => if (x._1 == x._2) x._3 else 0).reduce(_+_)
-    println("First part: " + pairs)
+    val password1 = bruteForceCrack1(doorID)
+    println("First part: " + password1)
     // 2nd part
     val codes = getRooms(args(0)).map(x => (x(0).split("-"),x(2)))
     val decoded = codes.map(x => ((x._1.map(y => y.

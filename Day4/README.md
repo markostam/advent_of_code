@@ -30,6 +30,7 @@ For example, the real name for qzmt-zixmtkozy-ivhz-343 is very encrypted name.
 
 What is the sector ID of the room where North Pole objects are stored?
 
-Although it hasn't changed, you can still get your puzzle input.
+Your puzzle answer was 482.
 
+Both parts of this puzzle are complete! They provide two gold stars: **
 

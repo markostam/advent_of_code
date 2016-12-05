@@ -25,29 +25,6 @@ object Advent5 {
     (0 to 7).map(x => passwordCrack(x)).mkString("")
   }
 
-  def bruteForceCrack2 (doorID: String) = {
-    // lazily evaluate a brute force attack
-    lazy val passwordCrack = Stream.from(0).
-      map(doorID + _).
-      map(x => hash(x)).
-      filter(x => (x(0)=="0" & x(1)=="0" & hex2int(x(2)) < 8)).
-      map(x => (x(2),x(3)(0)))
-    (0 to 7).map(x => passwordCrack(x)).mkString("")
-  }
-
-  def unique_new (thing : Array[(Any, Any)]) = {
-    var seen = Set[Any]()
-    def test_unique (tup : (Any,Any)) : Boolean = {
-      if (!seen.contains(tup._1)) {
-        seen += tup._1
-        true
-      }
-      else {false}
-    }
-    thing.filter(x => test_unique(x))
-  }
-
-
   def bruteForceCrack3 (doorID: String) = {
     var seen = Set[Any]()
     def test_unique (tup : (Any,Any)) : Boolean = {

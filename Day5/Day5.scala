@@ -48,12 +48,12 @@ object Advent5 {
   def main(args:Array[String]):Unit = {
     // first part
     val doorID = args(0)
-    val password1 = bruteForceCrack1(doorID)
+    val password1 = bruteForceCrack1(doorID2)
     println("First part: " + password1)
     // 2nd part
     val doorID2 = args(1)
-    val password1 = bruteForceCrack1(doorID)
-    println("First part: " + password1)
+    val password2 = bruteForceCrack2(doorID2)
+    println("First part: " + password2)
 
   }
 }

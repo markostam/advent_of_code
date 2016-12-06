@@ -1,5 +1,7 @@
 ##--- Day 5: How About a Nice Game of Chess? ---
 
+**Your puzzle input was uqwqemis.**
+
 You are faced with a security door designed by Easter Bunny engineers that seem to have acquired most of their security knowledge by watching hacking movies.
 
 The eight-character password for the door is generated one character at a time by finding the MD5 hash of some Door ID (your puzzle input) and an increasing integer index (starting with 0).
@@ -37,8 +39,3 @@ Given the actual Door ID and this new method, what is the password? Be extra pro
 Your puzzle answer was 694190cd.
 
 Both parts of this puzzle are complete! They provide two gold stars: **
-
-At this point, you should return to your advent calendar and try another puzzle.
-
-Your puzzle input was uqwqemis.
-

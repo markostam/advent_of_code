@@ -39,12 +39,11 @@ object Advent5 {
       map(doorID + _).
       map(x => hash(x)).
       filter(x => (x(0)=="0" & x(1)=="0" & hex2int(x(2)) < 8)).
-      map(x => (x(2),x(3))).filter(x => test_unique(x))
-    //lazy val passwordCrack = unique_new(passwordCheck)
-    (0 to 7).map(x => passwordCheck(x))//.mkString("")
+      map(x => if (x(3).length == 1) (x(2),"0") else (x(2),x(3)(0))).
+      filter(x => test_unique(x))
+    val unsorted = (0 to 7).map(x => passwordCheck(x))
+    unsorted.sortBy(_._1).map(_._2).mkString("")
   }
-
-
 
   def main(args:Array[String]):Unit = {
     // first part
@@ -52,10 +51,9 @@ object Advent5 {
     val password1 = bruteForceCrack1(doorID)
     println("First part: " + password1)
     // 2nd part
-    val codes = getRooms(args(0)).map(x => (x(0).split("-"),x(2)))
-    val decoded = codes.map(x => ((x._1.map(y => y.
-                  map(z => decodeChar(z,x._2.toInt)))).reduce(_+" "+_), x._2)).toMap
-    val queryRoom = "northpole object storage"
-    println("Second part: " + decoded(queryRoom))
+    val doorID = args(1)
+    val password1 = bruteForceCrack1(doorID)
+    println("First part: " + password1)
+
   }
 }

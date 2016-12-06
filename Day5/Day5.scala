@@ -27,7 +27,7 @@ object Advent5 {
 
   def bruteForceCrack2 (doorID: String) = {
     var seen = Set[Any]()
-    def test_unique (tup : (Any,Any)) : Boolean = {
+    def sortByFirst (tup : (Any,Any)) : Boolean = {
       if (!seen.contains(tup._1)) {
         seen += tup._1
         true
@@ -40,7 +40,7 @@ object Advent5 {
       map(x => hash(x)).
       filter(x => (x(0)=="0" & x(1)=="0" & hex2int(x(2)) < 8)).
       map(x => if (x(3).length == 1) (x(2),"0") else (x(2),x(3)(0))).
-      filter(x => test_unique(x))
+      filter(x => sortByFirst(x))
     val unsorted = (0 to 7).map(x => passwordCheck(x))
     unsorted.sortBy(_._1).map(_._2).mkString("")
   }
@@ -48,10 +48,10 @@ object Advent5 {
   def main(args:Array[String]):Unit = {
     // first part
     val doorID = args(0)
-    val password1 = bruteForceCrack1(doorID2)
+    val password1 = bruteForceCrack1(doorID)
     println("First part: " + password1)
     // 2nd part
-    val doorID2 = args(1)
+    val doorID2 = args(0)
     val password2 = bruteForceCrack2(doorID2)
     println("First part: " + password2)
 

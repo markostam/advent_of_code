@@ -22,6 +22,7 @@ vntsnd
 vrdear
 dvrsen
 enarar
+
 The most common character in the first column is e; in the second, a; in the third, s, and so on. Combining these characters returns the error-corrected message, easter.
 
 Given the recording in your puzzle input, what is the error-corrected version of the message being sent?

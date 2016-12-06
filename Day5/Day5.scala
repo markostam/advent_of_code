@@ -51,9 +51,8 @@ object Advent5 {
     val password1 = bruteForceCrack1(doorID)
     println("First part: " + password1)
     // 2nd part
-    val doorID2 = args(0)
-    val password2 = bruteForceCrack2(doorID2)
-    println("First part: " + password2)
+    val password2 = bruteForceCrack2(doorID)
+    println("Second part: " + password2)
 
   }
 }

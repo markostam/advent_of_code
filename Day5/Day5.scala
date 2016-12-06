@@ -25,7 +25,7 @@ object Advent5 {
     (0 to 7).map(x => passwordCrack(x)).mkString("")
   }
 
-  def bruteForceCrack3 (doorID: String) = {
+  def bruteForceCrack2 (doorID: String) = {
     var seen = Set[Any]()
     def test_unique (tup : (Any,Any)) : Boolean = {
       if (!seen.contains(tup._1)) {
@@ -51,7 +51,7 @@ object Advent5 {
     val password1 = bruteForceCrack1(doorID)
     println("First part: " + password1)
     // 2nd part
-    val doorID = args(1)
+    val doorID2 = args(1)
     val password1 = bruteForceCrack1(doorID)
     println("First part: " + password1)
 

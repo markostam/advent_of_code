@@ -6,10 +6,11 @@ An IP supports TLS if it has an Autonomous Bridge Bypass Annotation, or ABBA. An
 
 For example:
 
-abba[mnop]qrst supports TLS (abba outside square brackets).
-abcd[bddb]xyyx does not support TLS (bddb is within square brackets, even though xyyx is outside square brackets).
-aaaa[qwer]tyui does not support TLS (aaaa is invalid; the interior characters must be different).
-ioxxoj[asdfgh]zxcvbn supports TLS (oxxo is outside square brackets, even though it's within a larger string).
++ abba[mnop]qrst supports TLS (abba outside square brackets).
++ abcd[bddb]xyyx does not support TLS (bddb is within square brackets, even though xyyx is outside square brackets).
++ aaaa[qwer]tyui does not support TLS (aaaa is invalid; the interior characters must be different).
++ ioxxoj[asdfgh]zxcvbn supports TLS (oxxo is outside square brackets, even though it's within a larger string).
+
 How many IPs in your puzzle input support TLS?
 
 Your puzzle answer was 105.
@@ -22,10 +23,11 @@ An IP supports SSL if it has an Area-Broadcast Accessor, or ABA, anywhere in the
 
 For example:
 
-aba[bab]xyz supports SSL (aba outside square brackets with corresponding bab within square brackets).
-xyx[xyx]xyx does not support SSL (xyx, but no corresponding yxy).
-aaa[kek]eke supports SSL (eke in supernet with corresponding kek in hypernet; the aaa sequence is not related, because the interior character must be different).
-zazbz[bzb]cdb supports SSL (zaz has no corresponding aza, but zbz has a corresponding bzb, even though zaz and zbz overlap).
++ aba[bab]xyz supports SSL (aba outside square brackets with corresponding bab within square brackets).
++ xyx[xyx]xyx does not support SSL (xyx, but no corresponding yxy).
++ aaa[kek]eke supports SSL (eke in supernet with corresponding kek in hypernet; the aaa sequence is not related, because the interior character must be different).
++ zazbz[bzb]cdb supports SSL (zaz has no corresponding aza, but zbz has a corresponding bzb, even though zaz and zbz overlap).
+
 How many IPs in your puzzle input support SSL?
 
 Your puzzle answer was 258.

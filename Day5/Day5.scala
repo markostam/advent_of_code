@@ -1,9 +1,8 @@
-import java.security.MessageDigest
 
 object Advent5 {
 
   def md5(s: String) = {
-    MessageDigest.getInstance("MD5").digest(s.getBytes)
+    java.security.MessageDigest.getInstance("MD5").digest(s.getBytes)
   }
 
   def hash(s: String) : Array[String] = {
@@ -43,6 +42,19 @@ object Advent5 {
       filter(x => sortByFirst(x))
     val unsorted = (0 to 7).map(x => passwordCheck(x))
     unsorted.sortBy(_._1).map(_._2).mkString("")
+  }
+
+    def bruteForceCrack4 (doorID: String) = {
+    // lazily evaluate a brute force attack
+    lazy val passwordCheck = Stream.from(0).
+      map(doorID + _).
+      map(x => hash(x)).
+      filter(x => (x(0)=="0" & x(1)=="0" & hex2int(x(2)) < 8)).
+      map(x => if (x(3).length == 1) (x(2),"0") else (x(2),x(3)(0))).
+      groupBy(_._1).toArray
+    passwordCheck
+    //(0 to 7).map(x => passwordCheck(x.toString))
+    //unsorted.sortBy(_._1).map(_._2).mkString("")
   }
 
   def main(args:Array[String]):Unit = {

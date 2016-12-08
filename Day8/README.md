@@ -50,5 +50,21 @@ You notice that the screen is only capable of displaying capital letters; in the
 After you swipe your card, what code is the screen trying to display?
 
 Your puzzle answer was UPOJFLBCEZ.
+```
+scala>     println(display(0 to 5, 0 to 24))
+#        #     #  #  #           #  #              #  #     #  #  #  #     
+#        #     #        #     #        #              #     #              
+#        #     #        #     #        #              #     #  #  #        
+#        #     #  #  #        #        #              #     #              
+#        #     #              #        #     #        #     #              
+   #  #        #                 #  #           #  #        #              
 
+scala>     println(display(0 to 5, 25 to 49))
+#              #  #  #           #  #        #  #  #  #     #  #  #  #     
+#              #        #     #        #     #                       #     
+#              #  #  #        #              #  #  #              #        
+#              #        #     #              #                 #           
+#              #        #     #        #     #              #              
+#  #  #  #     #  #  #           #  #        #  #  #  #     #  #  #  #   
+```
 Both parts of this puzzle are complete! They provide two gold stars: **
